@@ -10,3 +10,14 @@ webpage_text = raw_data.decode("utf-8")
 # f.write(raw_data)
 # f.close()
 soup = BeautifulSoup(webpage_text,"html.parser")
+#Lọc các tiêu đề các cột trong bảng
+table1 = soup.find('table',id="tblGridData")
+title_lists = [""]
+td1_lists = table1.find_all("td","h_t")
+for td in td1_lists:
+    title = td.string.replace("\r\n                    ","")
+    title_lists.append(title)
+# Lấy các thông số còn lại:
+table2 = soup.find('table',id="tableContent")
+x = table2.find('tr')
+
