@@ -28,3 +28,7 @@ button {
 input {
     border-radius: 5px;
 }
+b {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 90%;
+}
