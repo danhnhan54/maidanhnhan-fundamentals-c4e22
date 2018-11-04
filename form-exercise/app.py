@@ -1,5 +1,9 @@
 from flask import *
+import mlab
+from register import Register
+from random import choice
 app = Flask(__name__)
+mlab.connect()
 
 @app.route('/register_form',methods=['GET','POST'])
 def register_form():
@@ -7,9 +11,12 @@ def register_form():
         return render_template('register.html')
     elif request.method == 'POST':
         form = request.form
+        info = {}
         print(form)
-        # for k,v in form.items():
-        #     print(k,v,sep=": ")
+        for k,v in form.items():
+            info[k] = v
+        r = Register(info=info)
+        r.save()
         return "Thank you"
 
 if __name__ == '__main__':
