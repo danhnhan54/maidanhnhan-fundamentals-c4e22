@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vote</title>
+</head>
+<body>
+    <div id="root">
+        <h3>{{ p.question}}</h3>
+        <ol>
+            {% for option in p.options %}
+                <li>{{ option }}</li>
+            {% endfor %}
+        </ol>
+        <form action="" method = "POST">
+            <select name="choice" id="">
+                {% for option in p.options %}
+                <option value="{{ loop.index }}">{{ loop.index }}</option>
+                {% endfor %}
+            </select>
+            <input type="text" name="user_name" placeholder="Your Name">
+            <button>Vote</button>
+        </form>
+    </div>
+</body>
+</html>

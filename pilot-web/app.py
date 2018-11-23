@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request
+from flask import *
 import mlab
 from poll import Poll
 from random import choice
+from vote import Vote
 
 app = Flask(__name__)
 mlab.connect()
@@ -27,6 +28,35 @@ def polls():
   # 2. Render All polls
   return render_template("polls.html", polls=poll_list)
 
+@app.route("/vote/<poll_code>",methods=["GET", "POST"])
+def vote(poll_code):
+  #1. Get poll
+  poll = Poll.objects(code=poll_code).first()
+
+  #2. Render poll detail + form
+  if request.method == "GET":
+    return render_template("vote_selection.html",p=poll)
+
+  #3. Handle form request(POST)
+
+  # Nếu để input là điền số:
+  # elif request.method == "POST":
+  #   form = request.form
+  #   name = form['user_name']
+  #   number = int(form['number'])
+  #   option = poll['options'][number-1]
+  #   return render_template("vote2.html",name=name, option=option)
+  
+  elif request.method == "POST":
+    form = request.form
+    choice = form['choice']
+    name = form['user_name']
+  # 4. Save
+    new_vote = Vote(choice=choice, voter=name, poll=poll)
+    new_vote.save()
+    return "Voted"
+
+
 @app.route('/new_poll',methods=["GET", "POST"])
 def new_poll():
   if request.method == "GET":
@@ -47,7 +77,8 @@ def new_poll():
       code += choice(alphabet)
     p = Poll(question=question, options=options, code=code)
     p.save()
-    return "Thank you"
+    url = url_for("poll",poll_code=p.code)
+    return redirect(url)
 
 if __name__ == '__main__':
   app.run(debug=True)

@@ -4,4 +4,4 @@ person = {
     "movies": ["infinity war","pokemon indigo"],
 }
 
-print(person["movies"][1])
+print(person["movies"])

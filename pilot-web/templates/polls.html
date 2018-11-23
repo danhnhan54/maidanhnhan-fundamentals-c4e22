@@ -10,9 +10,11 @@
 <body>
     <div id="root">
         {% for p in polls %}
+        <a href="{{ url_for('poll',poll_code=p.code) }}">
             <div>
                 <h3>{{ p.question }}</h3>
-            </div>
+            </div>            
+        </a>
         {% endfor %}
     </div>
 </body>

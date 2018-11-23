@@ -24,5 +24,5 @@ person_list = [
 # person_list.pop(0)
 
 
-for p in person_list:
-    print (p["name"])
+# for p in person_list:
+#     print (p["name"])

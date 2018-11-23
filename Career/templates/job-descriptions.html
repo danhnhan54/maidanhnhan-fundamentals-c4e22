@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{j.job_name}}</title>
+</head>
+<body>
+    <h3>{{j.job_name}}</h3>
+    <!-- <h4>Sector: {{j.job_sector}}</h4> -->
+    <h4>
+       Define : {{j.job_define}} 
+    </h4> 
+    <h4>Responsibility:</h4>
+    <ul>
+        {% for li in j.res %}
+            <li>{{ li }}</li>
+        {% endfor %}
+    </ul>
+    <h4>Employers:</h4>
+    {% for i in j.empls["p"] %}
+        <p>{{ i }}</p>
+    {% endfor %}
+    {% for i in j.empls["li"] %}
+        <li>{{ i }}</li>
+    {% endfor %}
+    <h4>Qualifications and training required:</h4>
+    {% for i in j.quals["p"] %}
+        <p>{{ i }}</p>
+    {% endfor %}
+    {% for i in j.quals["li"] %}
+        <li>{{ i }}</li>
+    {% endfor %}
+    <h4>Key skills:</h4>
+    {% for i in j.skills["p"] %}
+        <p>{{ i }}</p>
+    {% endfor %}
+    {% for i in j.skills["li"] %}
+        <li>{{ i }}</li>
+    {% endfor %}
+</body>
+</html>
